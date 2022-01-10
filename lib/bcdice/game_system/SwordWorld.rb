@@ -85,8 +85,13 @@ module BCDice
         round = 0
         first_to = command.first_to
         first_modify = command.first_modify
+        upperbound = command.upperbound
 
         loop do
+          if upperbound != -1 && round > upperbound
+            break
+          end
+
           dice_raw, diceText = rollDice(command, round)
           dice = dice_raw
 

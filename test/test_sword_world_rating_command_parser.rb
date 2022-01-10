@@ -125,6 +125,13 @@ class TestSwordWorldRatingCommandParser < Test::Unit::TestCase
     assert_nil(parsed)
   end
 
+  def test_parse_v1_upperbound_unsupported
+    parser = BCDice::GameSystem::SwordWorld::RatingParser.new().set_debug()
+    parsed = parser.parse("K50[8]+5+3u1")
+
+    assert_nil(parsed)
+  end
+
   def test_parse_v1_arithmetic
     parser = BCDice::GameSystem::SwordWorld::RatingParser.new().set_debug()
     parsed = parser.parse("K50+5*4/2-1+3@10")
@@ -201,29 +208,36 @@ class TestSwordWorldRatingCommandParser < Test::Unit::TestCase
   end
 
   def test_parse_v20_gf_sf_unsupported
-    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_5).set_debug()
+    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_0).set_debug()
     parsed = parser.parse("K20+5+3gfsf4")
 
     assert_nil(parsed)
   end
 
   def test_parse_v20_gf_tf_unsupported
-    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_5).set_debug()
+    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_0).set_debug()
     parsed = parser.parse("K20+5+3gftf4")
 
     assert_nil(parsed)
   end
 
   def test_parse_v20_sf_tf_unsupported
-    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_5).set_debug()
+    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_0).set_debug()
     parsed = parser.parse("K20+5+3sf4tf4")
+
+    assert_nil(parsed)
+  end
+
+  def test_parse_v20_upperbound_unsupported
+    parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_0).set_debug()
+    parsed = parser.parse("K50[8]+5+3u1")
 
     assert_nil(parsed)
   end
 
   def test_parse_v25_full_gf
     parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_5).set_debug()
-    parsed = parser.parse("K20+5+3@9#+2$+1gfr5H+2")
+    parsed = parser.parse("K20+5+3@9#+2$+1gfr5u7H+2")
 
     assert_not_nil(parsed)
     assert_equal(20, parsed.rate)
@@ -236,11 +250,12 @@ class TestSwordWorldRatingCommandParser < Test::Unit::TestCase
     assert_equal(5, parsed.rateup)
     assert_true(parsed.half)
     assert_equal(2, parsed.modifier_after_half)
+    assert_equal(7, parsed.upperbound)
   end
 
   def test_parse_v25_full_sf
     parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_5).set_debug()
-    parsed = parser.parse("K20+5+3@9#+2$+1sf4r5H+2")
+    parsed = parser.parse("K20+5+3@9#+2$+1sf4r5u7H+2")
 
     assert_not_nil(parsed)
     assert_equal(20, parsed.rate)
@@ -253,11 +268,12 @@ class TestSwordWorldRatingCommandParser < Test::Unit::TestCase
     assert_equal(5, parsed.rateup)
     assert_true(parsed.half)
     assert_equal(2, parsed.modifier_after_half)
+    assert_equal(7, parsed.upperbound)
   end
 
   def test_parse_v25_full_tf
     parser = BCDice::GameSystem::SwordWorld::RatingParser.new(version: :v2_5).set_debug()
-    parsed = parser.parse("K20+5+3@9#+2$+1tf4r5H+2")
+    parsed = parser.parse("K20+5+3@9#+2$+1tf4r5u7H+2")
 
     assert_not_nil(parsed)
     assert_equal(20, parsed.rate)
@@ -270,6 +286,7 @@ class TestSwordWorldRatingCommandParser < Test::Unit::TestCase
     assert_equal(5, parsed.rateup)
     assert_true(parsed.half)
     assert_equal(2, parsed.modifier_after_half)
+    assert_equal(7, parsed.upperbound)
   end
 
   def test_parse_v25_gf_sf_unsupported

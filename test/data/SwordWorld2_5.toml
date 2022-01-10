@@ -156,10 +156,16 @@ rands = [
 
 [[ test ]]
 game_system = "SwordWorld2.5"
-input = "K40+24@8$12r10gf"
-output = "KeyNo.40c[8]m[12]r[10]gf+24 ＞ 2D:[4,4 4,4 4,4 4,4 4,4 4,4 3,3]=12,8,8,8,8,8,6 ＞ 13,12,13,16,18,19,18+24 ＞ 6回転 ＞ 133"
+input = "K40+24@8$12r10#1"
+output = "KeyNo.40c[8]m[12]r[10]a[+1]+24 ＞ 2D:[1,2 4,4 4,4 4,4 4,4 4,4 3,3]=12,9,9,9,9,9,7 ＞ 13,12,14,17,20,21,19+24 ＞ 6回転 ＞ 140"
 critical = true
 rands = [
+  { sides = 6, value = 1 },
+  { sides = 6, value = 2 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
   { sides = 6, value = 4 },
   { sides = 6, value = 4 },
   { sides = 6, value = 4 },
@@ -167,36 +173,22 @@ rands = [
   { sides = 6, value = 4 },
   { sides = 6, value = 4 },
   { sides = 6, value = 3 },
+  { sides = 6, value = 3 },
 ]
 
 [[ test ]]
 game_system = "SwordWorld2.5"
-input = "K40+24sf4@8$12r10"
-output = "KeyNo.40c[8]m[12]r[10]sf[4]+24 ＞ 2D:[1,4 5,4 4,4 5,4 2,4]=12,9,8,9,6 ＞ 13,12,13,17,13+24 ＞ 4回転 ＞ 92"
+input = "K40+24@9$12r10gf#1"
+output = "KeyNo.40c[9]m[12]r[10]gfa[+1]+24 ＞ 2D:[2,2 4,4 4,4 4,4 4,4 4,4 3,3]=12,9,9,9,9,9,7 ＞ 13,12,14,17,20,21,19+24 ＞ 6回転 ＞ 140"
 critical = true
 rands = [
-  { sides = 6, value = 1 },
-  { sides = 6, value = 5 },
-  { sides = 6, value = 4 },
-  { sides = 6, value = 5 },
   { sides = 6, value = 2 },
-]
-
-[[ test ]]
-game_system = "SwordWorld2.5"
-input = "K40+24tf4@8$12r10"
-output = "KeyNo.40c[8]m[12]r[10]tf[4]+24 ＞ 2D:[1,4 4,5 5,4 3,5 5,2]=12,9,9,8,7 ＞ 13,12,14,16,16+24 ＞ 4回転 ＞ 95"
-critical = true
-rands = [
-  { sides = 6, value = 1 },
   { sides = 6, value = 4 },
-  { sides = 6, value = 5 },
-  { sides = 6, value = 5 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
   { sides = 6, value = 4 },
   { sides = 6, value = 3 },
-  { sides = 6, value = 5 },
-  { sides = 6, value = 5 },
-  { sides = 6, value = 2 },
 ]
 
 [[ test ]]
@@ -229,6 +221,64 @@ rands = [
   { sides = 6, value = 5 },
   { sides = 6, value = 3 },
   { sides = 6, value = 3 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "K40+24@8$12r10#1u2"
+output = "KeyNo.40c[8]m[12]r[10]u[2]a[+1]+24 ＞ 2D:[4,4 6,5 6,5]=12,12,12 ＞ 13,15,18+24 ＞ 2回転 ＞ 70"
+critical = true
+rands = [
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 5 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 5 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "K40+24@9$12r10gf#1u3"
+output = "KeyNo.40c[9]m[12]r[10]u[3]gfa[+1]+24 ＞ 2D:[2,2 4,4 4,4 4,4]=12,9,9,9 ＞ 13,12,14,17+24 ＞ 3回転 ＞ 80"
+critical = true
+rands = [
+  { sides = 6, value = 2 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "K40+24sf4@8$12r10#1u4"
+output = "KeyNo.40c[8]m[12]r[10]u[4]sf[4]a[+1]+24 ＞ 2D:[4,4 4,4 6,4 5,4 6,4]=12,9,11,10,11 ＞ 13,12,16,18,22+24 ＞ 4回転 ＞ 105"
+critical = true
+rands = [
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 5 },
+  { sides = 6, value = 6 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "K40+24tf4@8$12r10#1u5"
+output = "KeyNo.40c[8]m[12]r[10]u[5]tf[4]a[+1]+24 ＞ 2D:[6,4 4,5 1,6 4,4 3,5 3,5]=12,10,8,9,9,9 ＞ 13,13,13,17,20,21+24 ＞ 5回転 ＞ 121"
+critical = true
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 5 },
+  { sides = 6, value = 1 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 4 },
+  { sides = 6, value = 3 },
+  { sides = 6, value = 5 },
+  { sides = 6, value = 3 },
+  { sides = 6, value = 5 },
 ]
 
 [[ test ]]
@@ -522,6 +572,68 @@ game_system = "SwordWorld2.5"
 input = "k20sf1#8@2 クリティカル下限エラー sfが1の時の下限は3"
 output = "C値を3以上にしてください"
 rands = []
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "k20u1 回転数上限指定"
+output = "KeyNo.20c[10]u[1] ＞ 2D:[6,6 6,5]=12,11 ＞ 10,9 ＞ 1回転 ＞ 19"
+critical = true
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 5 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "k20u2 回転数上限指定"
+output = "KeyNo.20c[10]u[2] ＞ 2D:[6,6 6,5 6,4]=12,11,10 ＞ 10,9,8 ＞ 2回転 ＞ 27"
+critical = true
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 5 },
+  { sides = 6, value = 6 },
+  { sides = 6, value = 4 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "k20@13 非クリティカル表示確認"
+output = "KeyNo.20 ＞ 2D:[6,6]=12 ＞ 10"
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "k20u0 非クリティカル表示確認"
+output = "KeyNo.20 ＞ 2D:[6,6]=12 ＞ 10"
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "k20@13u0 非クリティカル表示確認"
+output = "KeyNo.20 ＞ 2D:[6,6]=12 ＞ 10"
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+]
+
+[[ test ]]
+game_system = "SwordWorld2.5"
+input = "k20@3u0 非クリティカル表示確認"
+output = "KeyNo.20 ＞ 2D:[6,6]=12 ＞ 10"
+rands = [
+  { sides = 6, value = 6 },
+  { sides = 6, value = 6 },
+]
 
 [[ test ]]
 game_system = "SwordWorld2.5"

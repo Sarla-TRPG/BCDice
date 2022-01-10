@@ -22,6 +22,9 @@ module BCDice
         # @return [Integer]
         attr_accessor :rateup
 
+        # @return [Integer]
+        attr_accessor :upperbound
+
         # @return [Boolean]
         attr_accessor :greatest_fortune
 
@@ -46,6 +49,7 @@ module BCDice
           @first_modify = 0
           @greatest_fortune = false
           @rateup = 0
+          @upperbound = -1
           @semi_fixed_val = 0
           @tmp_fixed_val = 0
           @modifier_after_half = nil
@@ -78,6 +82,7 @@ module BCDice
           output += "m[#{Format.modifier(first_modify)}]" if first_modify != 0
           output += "m[#{first_to}]" if first_to != 0
           output += "r[#{rateup}]" if rateup != 0
+          output += "u[#{upperbound}]" if upperbound > 0
           output += "gf" if @greatest_fortune
           output += "sf[#{semi_fixed_val}]" if semi_fixed_val != 0
           output += "tf[#{tmp_fixed_val}]" if tmp_fixed_val != 0

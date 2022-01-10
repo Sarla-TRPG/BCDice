@@ -1,5 +1,5 @@
 class RatingParser
-  token NUMBER K R H G F S T PLUS MINUS ASTERISK SLASH PARENL PARENR BRACKETL BRACKETR AT SHARP DOLLAR
+  token NUMBER K R H G F S T U PLUS MINUS ASTERISK SLASH PARENL PARENR BRACKETL BRACKETR AT SHARP DOLLAR 
 
   expect 4
 
@@ -96,6 +96,14 @@ class RatingParser
             raise ParseError unless [:v2_5, :v2_0].include?(@version) && option.rateup.nil?
 
             option.rateup = term
+            result = option
+          }
+          | option U NUMBER
+          {
+            option, _, term = val
+            raise ParseError unless [:v2_5].include?(@version) && option.upperbound.nil?
+
+            option.upperbound = term.to_i
             result = option
           }
           | option G F
@@ -210,11 +218,12 @@ def parsed(rate, modifier, option)
     p.first_to = option.first_to || 0
     p.first_modify = option.first_modify || 0
     p.rateup = option.rateup&.eval(@round_type) || 0
+    p.upperbound = option.upperbound || -1
     p.greatest_fortune = option.greatest_fortune if !option.greatest_fortune.nil?
     p.semi_fixed_val = option.semi_fixed_val&.clamp(1, 6) || 0
     p.tmp_fixed_val = option.tmp_fixed_val&.clamp(1, 6) || 0
     p.modifier_after_half = option.modifier_after_half&.eval(@round_type)
-    p.critical = option.critical&.eval(@round_type)&.clamp(0, 13) || (p.half ? 13 : 10)
+    p.critical = p.upperbound == 0 ? 13 : (option.critical&.eval(@round_type)&.clamp(0, 13) || (p.half ? 13 : 10))
   end
 end
 
