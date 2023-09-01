@@ -39,7 +39,7 @@ module BCDice
           fumble = first_value_group == [1, 1]
           critical = first_value_group == [6, 6]
 
-          if !fumble && !critical
+          if !fumble
             while sum_of_dice(value_groups.last) >= @critical_value
               value_groups.push(randomizer.roll_barabara(2, 6))
             end
@@ -113,11 +113,11 @@ module BCDice
         def result_status(total_sum, n_value_groups, fumble, critical)
           return :no_target unless @target
           return :fumble if fumble
-          return :critical if critical
+          # return :critical if critical
 
           if total_sum.send(@cmp_op, @target)
             # 振り足しが行われ、合計値が41以上ならば「超成功」
-            n_value_groups >= 2 && total_sum >= 41 ? :super_success : :success
+            n_value_groups >= 2 && total_sum >= 41 && !critical ? :super_success : critical ? :critical : :success
           else
             :failure
           end
